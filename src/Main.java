@@ -2,9 +2,26 @@
 // then press Enter. You can now see whitespace characters in your code.
 public class Main {
     public static void main(String[] args) {
-        EggThreadTask eggThread = new EggThreadTask();
-        ChickenThreadTask chickenThread = new ChickenThreadTask();
+        EggThreadTask eggThreadTask = new EggThreadTask();
+        ChickenThreadTask chickenThreadTask = new ChickenThreadTask();
 
-        Thread thread = new Thread(chickenThread);
+        Thread chickenThread = new Thread(chickenThreadTask);
+        Thread eggThread = new Thread(eggThreadTask);
+
+        chickenThread.start();
+        eggThread.start();
+
+        String winner = "";
+        while (true){
+            if (!chickenThread.isAlive()){
+                winner = "Яйцо";
+                break;
+            }
+            if (!eggThread.isAlive()){
+                winner = "Курица";
+                break;
+            }
+        }
+        System.out.println("Победитель - " + winner);
     }
 }

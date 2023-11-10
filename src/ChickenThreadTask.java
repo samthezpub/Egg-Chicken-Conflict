@@ -1,6 +1,14 @@
 public class ChickenThreadTask implements Runnable{
     @Override
     public void run() {
-        System.out.println("Первой была курица!");
+        for (int i = 0; i < 10; i++) {
+            try {
+                Thread.sleep(200);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+            System.out.println("Первой была курица!");
+        }
+
     }
 }
